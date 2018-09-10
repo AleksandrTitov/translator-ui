@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+<table class="table table-striped" >
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">N</th>
+            <th scope="col">Word</th>
+            <th scope="col">Count</th>
+            <th scope="col">Translate</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for word in words %}
+        <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <td>{{ word[0] }}</td>
+            <td>{{ word[1][0] }}</td>
+            <td>{{ word[1][1] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% endblock %}

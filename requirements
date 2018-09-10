@@ -1,0 +1,5 @@
+flask
+flask-wtf
+flask-bootstrap
+urllib3
+pygal

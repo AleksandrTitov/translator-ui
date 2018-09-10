@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Form for the text</h2>
+    <form  action="" method="post" role="form">
+    {{ form.csrf }}
+    <fieldset disabled>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="from">From</label>
+            <select class="form-control" id="from">
+                <option>ENG</option>
+                <option>RU</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="to">To</label>
+            <select class="form-control" id="to">
+                <option>RU</option>
+                <option>ENG</option>
+            </select>
+        </div>
+    </div>
+    </fieldset>
+    <div class="form-group">
+        <label for="text">Text to translate:</label>
+        <textarea class="form-control" id="text" name="text" rows="10" placeholder="Enter the text to translate"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success" id="translate" name="translate">Translate</button>
+    </form>
+    <br>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+
+        {% for message in messages %}
+            {% if "Error" not in message[1]: %}
+                <div class="alert alert-info">
+                <strong>Success! </strong> {{ message[1] }}
+                </div>
+            {% endif %}
+
+            {% if "Error" in message[1]: %}
+                <div class="alert alert-warning">
+                {{ message[1] }}
+                </div>
+            {% endif %}
+        {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+</div>
+<br>
+{% endblock %}

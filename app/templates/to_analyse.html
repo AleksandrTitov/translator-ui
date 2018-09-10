@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Form for the text</h2>
+    <form  action="" method="post" role="form">
+    {{ form.csrf }}
+    <div class="form-group">
+        <label for="text">Text to analyse:</label>
+        <textarea class="form-control" id="text" name="text" rows="10" placeholder="Enter the text to analyse"></textarea>
+    </div>
+        <button type="submit" class="btn btn-success" id="analyse" name="analyse">Analyse</button>
+    </form>
+    <br>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+
+        {% for message in messages %}
+            {% if "Error" not in message[1]: %}
+                <div class="alert alert-info">
+                <strong>Success! </strong> {{ message[1] }}
+                </div>
+            {% endif %}
+
+            {% if "Error" in message[1]: %}
+                <div class="alert alert-warning">
+                {{ message[1] }}
+                </div>
+            {% endif %}
+        {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+</div>
+<br>
+{% endblock %}
